@@ -8,13 +8,17 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                bat 'mvn clean package'
+                script {
+                    sh 'mvn clean package'
+                }
             }
         }
 
         stage('Generate Code Coverage Report') {
             steps {
-                bat 'mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package jacoco:report'
+                script {
+                    sh 'mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package jacoco:report'
+                }
             }
 
             post {
